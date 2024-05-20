@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>Test your Knowledge</h1>
+    <div *ngIf="isLoading">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <div>Loading...</div>
+    </div>
+    <div *ngIf="!isLoading && errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+    <div *ngIf="!isLoading" class="cards">
+        <app-quiz-question
+            class="card" 
+            *ngFor="let q of questions; let index = index"
+            [question]="q"
+            [showCorrectAnswer]="isGameEnded"
+            (selectedAnswerChange)="questionAnswered($event,index)"
+        ></app-quiz-question>
+    </div>    
+    <div *ngIf="isGameEnded" class="result">Result: {{result | percent}}</div>
+</div>

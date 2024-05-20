@@ -1,0 +1,22 @@
+<mat-card >
+    <mat-card-header>
+        <mat-card-title [innerHTML]="question?.question">
+         <mat-card-subtitle>
+            {{question?.category}}
+         </mat-card-subtitle>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="options">
+            <div class="option"
+             *ngFor="let a of question?.answers" 
+             [class.selected]="a === selectedAnswer" 
+             [innerHTML]="a" 
+             [class.correct]="showCorrectAnswer && a === question?.correct_answer"
+             (click)="selectAnswer(a)">
+                {{a}}
+            </div>
+            
+        </div>
+    </mat-card-content>
+</mat-card>
